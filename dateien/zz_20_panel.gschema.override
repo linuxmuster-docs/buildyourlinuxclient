@@ -1,0 +1,34 @@
+# linuxmuster als Stanard-Layout für das Panel
+[org.mate.panel]
+default-layout='lmn'
+show-program-list=true
+
+# mit dem Comman-Applet soll der Benutzername angezeigt werden
+[org.mate.panel.applet.command]
+command='whoami'
+interval=3600
+width=4
+show-icon=false
+
+# System im Panel ausblenden 
+# wurde ins Anwendungsmenü verschoben
+[org.mate.panel.menubar]
+show-desktop=false
+
+# kein Nachfrage beim Ausloggen
+[org.mate.session]
+logout-prompt=false
+
+# automatisches Ausloggen bei Untätigkeit
+# 5 Stunden
+[org.mate.seesion]
+idle-delay=300
+
+# Orte anpassen
+# FIXME: funktioniert nicht
+[org.mate.mate-menu.plugins.places]
+show-computer=false
+show-network=false
+show-home-folder=false
+show-trash=false
+show-desktop=false

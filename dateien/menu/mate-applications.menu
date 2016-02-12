@@ -1,0 +1,531 @@
+<!DOCTYPE Menu PUBLIC "-//freedesktop//DTD Menu 1.0//EN"
+ "http://www.freedesktop.org/standards/menu-spec/1.0/menu.dtd">
+
+<Menu>
+
+  <Name>Applications</Name>
+  <Directory>mate-menu-applications.directory</Directory>
+
+  <!-- Scan legacy dirs first, as later items take priority -->
+  <KDELegacyDirs/>
+  <LegacyDir>/etc/X11/applnk</LegacyDir>
+  <LegacyDir>/usr/share/mate/apps</LegacyDir>
+
+  <!-- Read standard .directory and .desktop file locations -->
+  <DefaultAppDirs/>
+  <DefaultDirectoryDirs/>
+
+  <!-- Read in overrides and child menus from applications-merged/ -->
+  <DefaultMergeDirs/>
+  <MergeDir>applications-merged</MergeDir>
+
+  <!-- Accessories submenu -->
+  <Menu>
+    <Name>Accessories</Name>
+    <Directory>mate-utility.directory</Directory>
+    <Include>
+      <And>
+        <Category>Utility</Category>
+	<!-- Accessibility spec must have either the Utility or Settings
+	     category, and we display an accessibility submenu already for
+	     the ones that do not have Settings, so don't display accessibility
+	     applications here -->
+        <Not><Category>Accessibility</Category></Not>
+        <Not><Category>System</Category></Not>
+      </And>
+    </Include>
+  </Menu> <!-- End Accessories -->
+
+  <!-- Accessibility submenu -->
+  <Menu>
+    <Name>Universal Access</Name>
+    <Directory>mate-utility-accessibility.directory</Directory>
+    <Include>
+      <And>
+        <Category>Accessibility</Category>
+        <Not><Category>Settings</Category></Not>
+      </And>
+    </Include>
+  </Menu> <!-- End Accessibility -->
+
+  <!-- Development Tools -->
+  <Menu>
+    <Name>Development</Name>
+    <Directory>mate-development.directory</Directory>
+    <Include>
+      <And>
+        <Category>Development</Category>
+      </And>
+      <Filename>emacs.desktop</Filename>
+    </Include>
+  </Menu> <!-- End Development Tools -->
+
+  <!-- Education -->
+  <Menu>
+    <Name>Education</Name>
+    <Directory>mate-education.directory</Directory>
+    <Include>
+      <And>
+        <Category>Education</Category>
+      </And>
+    </Include>
+  </Menu> <!-- End Education -->
+
+  <!-- Games -->
+  <Menu>
+    <Name>Games</Name>
+    <Directory>mate-game.directory</Directory>
+    <Include>
+      <And>
+        <Category>Game</Category>
+      </And>
+    </Include>
+  </Menu> <!-- End Games -->
+
+  <!-- Graphics -->
+  <Menu>
+    <Name>Graphics</Name>
+    <Directory>mate-graphics.directory</Directory>
+    <Include>
+      <And>
+        <Category>Graphics</Category>
+      </And>
+    </Include>
+  </Menu> <!-- End Graphics -->
+
+  <!-- Internet -->
+  <Menu>
+    <Name>Internet</Name>
+    <Directory>mate-network.directory</Directory>
+    <Include>
+      <And>
+        <Category>Network</Category>
+      </And>
+    </Include>
+  </Menu>   <!-- End Internet -->
+
+  <!-- Multimedia -->
+  <Menu>
+    <Name>Multimedia</Name>
+    <Directory>mate-audio-video.directory</Directory>
+    <Include>
+      <And>
+        <Category>AudioVideo</Category>
+      </And>
+    </Include>
+  </Menu>   <!-- End Multimedia -->
+
+  <!-- Office -->
+  <Menu>
+    <Name>Office</Name>
+    <Directory>mate-office.directory</Directory>
+    <Include>
+      <And>
+        <Category>Office</Category>
+      </And>
+    </Include>
+  </Menu> <!-- End Office -->
+
+  <!-- System Tools-->
+  <Menu>
+    <Name>System</Name>
+    <Directory>mate-system-tools.directory</Directory>
+    <Include>
+      <And>
+        <Category>System</Category>
+        <Not><Category>Settings</Category></Not>
+      </And>
+    </Include>
+  </Menu>   <!-- End System Tools -->
+
+  <!-- Other -->
+  <Menu>
+    <Name>Other</Name>
+    <Directory>mate-other.directory</Directory>
+    <OnlyUnallocated/>
+    <Include>
+      <And>
+        <Not><Category>Core</Category></Not>
+        <Not><Category>Settings</Category></Not>
+        <Not><Category>Screensaver</Category></Not>
+      </And>
+    </Include>
+  </Menu> <!-- End Other -->
+
+  <!-- Preferences -->
+  <Menu>
+    <Name>Preferences</Name>
+    <Directory>mate-settings.directory</Directory>
+    <Menu>
+      <Name>Personal</Name>
+      <Directory>mate-personal.directory</Directory>
+      <Include>
+        <And>
+          <Category>Settings</Category>
+          <Category>X-MATE-PersonalSettings</Category>
+          <Not><Category>System</Category></Not>
+        </And>
+        <And>
+          <Category>Settings</Category>
+          <Category>X-GNOME-PersonalSettings</Category>
+          <Not><Category>System</Category></Not>
+        </And>
+        <And>
+          <Category>Settings</Category>
+          <Category>X-GNOME-SystemSettings</Category>
+          <Category>Archiving</Category>
+        </And>
+        <And>
+          <Category>Settings</Category>
+          <Category>Accessibility</Category>
+        </And>
+      </Include>
+    </Menu>
+
+    <Menu>
+      <Name>Look and Feel</Name>
+      <Directory>mate-look-and-feel.directory</Directory>
+      <Include>
+        <And>
+          <Category>Settings</Category>
+          <Category>DesktopSettings</Category>
+          <Not><Category>System</Category></Not>
+          <Not><Category>Security</Category></Not>
+        </And>
+        <And>
+          <Category>Settings</Category>
+          <Category>Qt</Category>
+          <Not><Category>System</Category></Not>
+          <Not><Category>Security</Category></Not>
+        </And>
+      </Include>
+    </Menu>
+
+    <Menu>
+      <Name>Internet and Network</Name>
+      <Directory>mate-internet-and-network.directory</Directory>
+      <Include>
+        <And>
+          <Category>Settings</Category>
+          <Category>X-MATE-NetworkSettings</Category>
+          <Not><Category>System</Category></Not>
+        </And>
+        <And>
+          <Category>Settings</Category>
+          <Category>X-GNOME-NetworkSettings</Category>
+          <Not><Category>System</Category></Not>
+        </And>
+        <And>
+          <Category>Settings</Category>
+          <Category>Security</Category>
+          <Not><Category>System</Category></Not>
+        </And>
+      </Include>
+    </Menu>
+
+    <Menu>
+      <Name>Hardware</Name>
+      <Directory>mate-hardware.directory</Directory>
+      <Include>
+        <And>
+          <Category>Settings</Category>
+          <Category>HardwareSettings</Category>
+          <Not><Category>System</Category></Not>
+        </And>
+      </Include>
+    </Menu>
+
+    <Menu>
+      <Name>Other</Name>
+      <Directory>mate-other.directory</Directory>
+      <Include>
+        <And>
+          <Category>Settings</Category>
+          <Not><Category>Accessibility</Category></Not>
+          <Not><Category>System</Category></Not>
+          <Not><Category>DesktopSettings</Category></Not>
+          <Not><Category>HardwareSettings</Category></Not>
+          <Not><Category>Security</Category></Not>
+          <Not><Category>Archiving</Category></Not>
+          <Not><Category>Qt</Category></Not>
+          <Not><Category>X-MATE-NetworkSettings</Category></Not>
+          <Not><Category>X-GNOME-NetworkSettings</Category></Not>
+          <Not><Category>X-MATE-PersonalSettings</Category></Not>
+          <Not><Category>X-GNOME-PersonalSettings</Category></Not>
+        </And>
+      </Include>
+      <Exclude>
+        <Filename>matecc.desktop</Filename>
+      </Exclude>
+    </Menu>
+
+    <Exclude>
+      <Category>Settings</Category>
+    </Exclude>
+  </Menu>
+  <!-- End Preferences  -->
+
+  <!-- System Settings -->
+  <Menu>
+    <Name>Administration</Name>
+    <Directory>mate-settings-system.directory</Directory>
+    <Include>
+      <And>
+        <Category>Settings</Category>
+        <Category>System</Category>
+      </And>
+    </Include>
+  </Menu>     <!-- End System Settings -->
+
+  <!-- Schulfächer -->
+  <Menu> 
+  
+    <Name>Fächer</Name>
+    <Directory>faecher.directory</Directory>
+
+    <!-- BK -->
+    <Menu>
+       <Name>BK</Name>
+       <Directory>faecher-bk.directory</Directory>
+       <Include>
+         <And>
+           <Category>bk</Category>
+       </And>
+       </Include>
+    </Menu><!-- Ende BK --> 
+   
+    <!-- Biologie -->
+    <Menu>
+       <Name>Biologie</Name>
+       <Directory>faecher-biologie.directory</Directory>
+       <Include>
+         <And>
+           <Category>biologie</Category>
+       </And>
+       </Include>
+    </Menu><!-- Ende Biologie --> 
+ 
+    <!-- Chemie -->
+    <Menu>
+       <Name>Chemie</Name>
+       <Directory>faecher-chemie.directory</Directory>
+       <Include>
+         <And>
+           <Category>chemie</Category>
+       </And>
+       </Include>
+    </Menu><!-- Ende Chemie--> 
+ 
+    <!-- Deutsch -->
+    <Menu>
+       <Name>Deutsch</Name>
+       <Directory>faecher-deutsch.directory</Directory>
+       <Include>
+         <And>
+           <Category>deutsch</Category>
+       </And>
+       </Include>
+    </Menu><!-- Ende Deutsch --> 
+
+    <!-- Englisch -->
+    <Menu>
+       <Name>Englisch</Name>
+       <Directory>faecher-englisch.directory</Directory>
+       <Include>
+         <And>
+           <Category>englisch</Category>
+       </And>
+       </Include>
+    </Menu><!-- Ende Englisch --> 
+
+    <!-- Ethik -->
+    <Menu>
+       <Name>Ethik</Name>
+       <Directory>faecher-ethik.directory</Directory>
+       <Include>
+         <And>
+           <Category>ethik</Category>
+       </And>
+       </Include>
+    </Menu><!-- Ende Ethik --> 
+
+    <!-- Französisch -->
+    <Menu>
+       <Name>Französisch</Name>
+       <Directory>faecher-franzoesich.directory</Directory>
+       <Include>
+         <And>
+           <Category>franzoesisch</Category>
+       </And>
+       </Include>
+    </Menu><!-- Ende Französisch --> 
+
+    <!-- GMK -->
+    <Menu>
+       <Name>GMK</Name>
+       <Directory>faecher-gmk.directory</Directory>
+       <Include>
+         <And>
+           <Category>gmk</Category>
+       </And>
+       </Include>
+    </Menu><!-- Ende GMK -->
+ 
+    <!-- Geographie -->
+    <Menu>
+       <Name>Geographie</Name>
+       <Directory>faecher-geographie.directory</Directory>
+       <Include>
+         <And>
+           <Category>geographie</Category>
+       </And>
+       </Include>
+    </Menu><!-- Ende Geographie -->
+
+    <!-- Geschichte -->
+    <Menu>
+       <Name>Geschichte</Name>
+       <Directory>faecher-geschichte.directory</Directory>
+       <Include>
+         <And>
+           <Category>geschichte</Category>
+       </And>
+       </Include>
+    </Menu><!-- Ende Geschichte --> 
+ 
+    <!-- Informatik -->
+    <Menu>
+       <Name>Informatik</Name>
+       <Directory>faecher-informatik.directory</Directory>
+       <Include>
+         <And>
+           <Category>informatik</Category>
+       </And>
+       </Include>
+    </Menu><!-- Ende Informatik --> 
+
+    <!-- ITG -->
+    <Menu>
+       <Name>ITG</Name>
+       <Directory>faecher-itg.directory</Directory>
+       <Include>
+         <And>
+           <Category>itg</Category>
+       </And>
+       </Include>
+    </Menu><!-- Ende ITG --> 
+
+    <!-- Latein -->
+    <Menu>
+       <Name>Latein</Name>
+       <Directory>faecher-latein.directory</Directory>
+       <Include>
+         <And>
+           <Category>latein</Category>
+       </And>
+       </Include>
+    </Menu><!-- Ende Latein --> 
+
+    <!-- Mathematik -->
+    <Menu>
+       <Name>Mathematik</Name>
+       <Directory>faecher-mathematik.directory</Directory>
+       <Include>
+         <And>
+           <Category>mathematik</Category>
+       </And>
+       </Include>
+    </Menu><!-- Ende Mathematik --> 
+
+    <!-- Musik -->
+    <Menu>
+       <Name>Musik</Name>
+       <Directory>faecher-musik.directory</Directory>
+       <Include>
+         <And>
+           <Category>musik</Category>
+       </And>
+       </Include>
+    </Menu><!-- Ende Musik -->
+ 
+    <!-- NP -->
+    <Menu>
+       <Name>Naturphänomene</Name>
+       <Directory>faecher-np.directory</Directory>
+       <Include>
+         <And>
+           <Category>np</Category>
+       </And>
+       </Include>
+    </Menu><!-- Ende NP --> 
+
+    <!-- NWT -->
+    <Menu>
+       <Name>NWT</Name>
+       <Directory>faecher-nwt.directory</Directory>
+       <Include>
+         <And>
+           <Category>nwt</Category>
+       </And>
+       </Include>
+    </Menu><!-- Ende NWT -->
+ 
+    <!-- Physik -->
+    <Menu>
+       <Name>Physik</Name>
+       <Directory>faecher-physik.directory</Directory>
+       <Include>
+         <And>
+           <Category>physik</Category>
+       </And>
+       </Include>
+    </Menu><!-- Ende Physik --> 
+
+    <!-- Religion -->
+    <Menu>
+       <Name>Religion</Name>
+       <Directory>faecher-religion.directory</Directory>
+       <Include>
+         <And>
+           <Category>religion</Category>
+       </And>
+       </Include>
+    </Menu><!-- Ende Religion --> 
+    
+    <!-- Sport -->
+    <Menu>
+       <Name>Sport</Name>
+       <Directory>faecher-sport.directory</Directory>
+       <Include>
+         <And>
+           <Category>Sport</Category>
+       </And>
+       </Include>
+    </Menu><!-- Ende Sport -->
+ 
+  </Menu> <!-- Ende Schulfächer -->
+
+  <!-- sort order --> 
+  <Layout>
+    <Menuname>Office</Menuname>
+    <Menuname>Internet</Menuname>
+    <Menuname>Graphics</Menuname>
+    <Menuname>Multimedia</Menuname>
+    <Menuname>Fächer</Menuname>
+    <Menuname>Education</Menuname>
+    <Menuname>Development</Menuname>
+    <Menuname>Games</Menuname>
+    <Menuname>Accessories</Menuname>
+    <Menuname>Other</Menuname>
+    <Menuname>Universal Access</Menuname>
+    <Separator/>
+    <Menuname>Preferences</Menuname>
+    <Menuname>Administration</Menuname>
+    <Menuname>Settings</Menuname>
+    <Merge type="menus"/>
+    <Merge type="files"/>
+  </Layout> <!-- End sort order -->
+
+
+
+</Menu> <!-- End Applications -->

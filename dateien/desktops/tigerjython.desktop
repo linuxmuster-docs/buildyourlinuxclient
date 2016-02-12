@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Version=1.0
+Name=Tigerjython
+Categories=Application;itg;
+Exec=java -jar /opt/tigerjython/tigerjython2.jar
+Icon=tigerjython-48.png
+Terminal=false
+Type=Application
+

@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Version=1.0
+Name=Hamstersimulator
+Categories=Application;itg;
+Exec=java -jar /opt/hamstersimulator/hamstersimulator.jar
+Icon=hamstersimulator-48.png
+Terminal=false
+Type=Application
+

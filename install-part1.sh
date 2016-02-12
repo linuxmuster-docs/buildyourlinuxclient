@@ -1,67 +1,27 @@
 #!/bin/bash
+# Installationsskript Teil 1
+#
+# linuxmuster@gymneureut.de
+# 2.02.2016
+# GPL v3
+#
 
-# Prüfen, ob das Skript mir root-Rechten aufgerufen wurde
-if [ `id -u` != 0 ]; then
-    echo "Bitte rufen Sie dieses Skript mit root-Rechten auf"
-    exit 1
-fi
+. ./helperfunctions.sh
 
-# Loggen vorbereiten
-LOGDATEI=./install.log
+# FIXME
+# bug 1542549
+# Ubuntu MATE alpha2 liefert eine kaputte init-system-helpers
+# Version aus (1.6ubuntu1)
+# Nach endgültigem Release entfernen
 
-if [ -e LOGDATEI ]; then
-  rm "$LOGDATEI"
-fi
+echo "Behandle BUG 1542549"
+echo "Init-Sytem anpassen, Teil 1 ..."
+mache "update-rc.d mountkernfs.sh defaults"
+echo "Init-Sytem anpassen, Teil 2 ..."
+mache "update-rc.d dbus defaults"
+echo "Führe apt-get -f install aus ..."
+mache "apt-get -f install"
 
-# Funktionen dazuladen
-. functions.sh
-
-# Paramter auslesen
-# prinzipiell wird alles in die Logdatei
-# mit -v oder --verbose werden alle MEldungen auch StOut ausgegeben
-V=0
-# mit -y oder --yes werden alle Fragen mit y beantwortet
-Y=0
-# mit -i oder --interactive werden debconf-Dialoge gezeigt, anderen-
-#    falls werden im Skript gesetzt Werte verwendet
-I=0
-
-usage="Dieses Skript installiert ...i sdsddsdd"
-while getopts "iyv" options; do
-  case $options in
-    i ) I=1;;
-    y ) Y=1;;
-    v ) V=1;;
-    h ) echo $usage
-        exit 0
-        ;;
-   \? ) echo $usage
-        exit 1
-        ;;
-  esac
-done
-
-
-if [ $I -eq 0 ]; then
-  export DEBIAN_FRONTEND=noninteractive
-elif [ $I -eq 1 ]; then
-  export DEBIAN_FRONTEND=dialog
-else
-  fehler
-fi
-
-if [ $V -eq 0 ] && [ $Y -eq 0 ]; then
- echo "Bitte mit -y starten" ; exit 1
-fi
-
-
-if [ $I -eq 1 ] && [ $Y -eq 1 ] && [ $V -eq 0 ]; then
-  echo "Die Schalter -i und -y können nur kombiniert werden, wenn auch der Schalter -v benutzt wird"
-  exit
-fi
-
-# Ausgabe auf Konsole und in log-Datei
-exec &> >(tee -a "$LOGDATEI")
 
 # Paketlisten erneuern
 echo "Paketlisten erneuern ..."
@@ -78,7 +38,7 @@ else
 fi
 
 # FIXME: sollte beim Erscheinen von 16.04 nicht mehr
-# FIXME: notwendig sein.
+# notwendig sein.
 # nicht aufzulösende Abhängigkeiten führen zu einem Fehler
 # vermutlich weil alpha-Version
 echo "Führe apt-get -f aus ..."
@@ -104,7 +64,7 @@ fi
 echo "Installiere vim ..."
 installiere "vim"
 
-# alte Signaturschlüssellöschen
+# alte Signaturschlüssel löschen
 echo "Lösche alte Schlüsseldatei ..."
 if [ -e "linuxmuster.net.key" ]; then
   mache "rm linuxmuster.net.key"
@@ -121,13 +81,13 @@ if $( wget --quiet http://pkg.linuxmuster.net/linuxmuster.net.key ); then
   if mache "apt-key add linuxmuster.net.key"; then
     # Repository eintragen
     echo "Trage Repository ein ..."
+    # FIXME: zu gegebener Zeit ändern
     echo "deb http://pkg.linuxmuster.net/ trusty/" > /etc/apt/sources.list.d/linuxmuster-client.list
-    # zu gegebener Zeit ändern
     #echo "deb http://pkg.linuxmuster.net/ xenial/" > /etc/apt/sources.list.d/linuxmuster-client.list
     echo -e "... fertig\n"
   fi
-#else 
- # fehler
+else 
+  fehler
 fi
 
 # Schlüssel wieder löschen
@@ -143,18 +103,22 @@ mache "aptitude update"
 # Abhängigkeiten für linuxmuster-client-auth installieren
 echo "Installiere cifs-utils ..."
 installiere "cifs-utils"
+
 echo "Installiere rsync ..."
 installiere "rsync"
+
 echo "Installiere libpam-mount ..."
 installiere "libpam-mount"
+
 echo "Installiere nscd ..."
 installiere "nscd"
+
 # Werte siehe http://www.linuxmuster.net/wiki/dokumentation:handbuch60:clients:linuxmuster-client-auth
 if [ $I -eq 0 ]; then
   # FIXME: Autokonfiguration funktioniert nicht 
   echo "Konfigurationen für ldap-auth-comfig hinterlegen"
   echo "ldap-auth-config ldap-auth-config/ldapns/ldap-server string	ldapi:///" | debconf-set-selections
-  echo "ldap-auth-config ldap-auth-config/ldapns/base-dn string dc=gymneureut,dc=local" | debconf-set-selections
+  echo "ldap-auth-config ldap-auth-config/ldapns/base-dn string dc=linuxmuster-net,dc=lokal" | debconf-set-selections
   echo "ldap-auth-config ldap-auth-config/ldapns/ldap_version select 3" | debconf-set-selections
   echo "ldap-auth-config ldap-auth-config/dbrootlogin boolean false" | debconf-set-selections
   echo "ldap-auth-config ldap-auth-config/dblogin boolean false" | debconf-set-selections
@@ -171,14 +135,14 @@ if [ $I -eq 0 ]; then
   # FIXME: Autokonfiguration funktioniert nicht
   echo "Hinterlege Konfigurationsdateien für linuxmuster-client-auth"
   echo "linuxmuster-client-auth shared/ldapns/ldap-server string 10.16.1.1" | debconf-set-selections
-  echo "linuxmuster-client-auth shared/ldapns/base-dn string dc=gymneureut,dc=local" | debconf-set-selections
+  echo "linuxmuster-client-auth shared/ldapns/base-dn string dc=linuxmuster-net,dc=lokal" | debconf-set-selections
   echo -e "... fertig\n"
 fi 
 
 echo "Installiere linuxmuster-client-auth ..."
 installiere "linuxmuster-client-auth"
 
-echo "Lösche Paket-Cache ..."
-mache "aptitude clean"
+
+aufraeumen
 
 echo "Bitte rebooten. Unsynchronisiert starten. Danach install-teil2.sh aufrufen."
