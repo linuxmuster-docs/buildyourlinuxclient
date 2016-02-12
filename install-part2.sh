@@ -13,6 +13,9 @@ if [ -e LOGDATEI ]; then
   rm "$LOGDATEI"
 fi
 
+# Funktionen dazuladen
+. functions.sh
+
 # Paramter auslesen
 # prinzipiell wird alles in die Logdatei
 # mit -v oder --verbose werden alle MEldungen auch StOut ausgegeben
@@ -51,36 +54,10 @@ if [ $V -eq 0 ] && [ $Y -eq 0 ]; then
  echo "Bitte mit -y starten" ; exit 1
 fi
 
-fehler() {
-  echo -e "\033[31m... FEHLER\033[0m\n"
-}
-
-mache() {
-if [ $V -eq 1 ]; then
-  $* && echo -e "... fertig\n" || fehler
-else 
-  $* >> "$LOGDATEI" && echo -e "... fertig\n" || fehler
-fi
-}
-
 if [ $I -eq 1 ] && [ $Y -eq 1 ] && [ $V -eq 0 ]; then
   echo "Die Schalter -i und -y können nur kombiniert werden, wenn auch der Schalter -v benutzt wird"
   exit
 fi
-
-installiere() {
-if [ $V -eq 1 ] && [ $Y -eq 1 ]; then
-  aptitude install -y $* && echo -e "... fertig\n" || fehler
-elif [ $V -eq 1 ] && [ $Y -eq 0 ]; then
-  aptitude install $* && echo -e "... fertig\n" || fehler
-elif [ $V -eq 0 ] && [ $Y -eq 1 ]; then
-  aptitude install -y $* >> "$LOGDATEI" && echo -e "... fertig\n" || fehler
-elif [ $V -eq 0 ] && [ $Y -eq 0 ]; then
-  aptitude install $* >> "$LOGDATEI" && echo -e "... fertig\n" || fehler
-else
-  fehler
-fi
-}
 
 # Ausgabe auf Konsole und in log-Datei
 exec &> >(tee -a "$LOGDATEI")
