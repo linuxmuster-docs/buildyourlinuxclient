@@ -1,0 +1,7 @@
+
+== make image distributable ==
+* image system: remove /etc/ssh/*key*
+
+== turnkey (what users/skripts need to do after download) ==
+* postsync: make new /etc/ssh/*key*
+* add root-ssh-key to authorized_keys
