@@ -1,0 +1,84 @@
+[Toplevel top]
+expand=true
+orientation=top
+size=24
+
+[Toplevel bottom]
+expand=true
+orientation=bottom
+size=24
+
+[Object menu-bar]
+object-type=menu-bar
+toplevel-id=top
+position=0
+locked=true
+
+[Object commandapplet]
+locked=false
+position=1700
+panel-right-stick=false
+toplevel-id=top
+applet-iid=CommandAppletFactory::CommandApplet
+object-type=applet
+
+[Object battstatapplet]
+locked=false
+position=1880
+panel-right-stick=false
+toplevel-id=top
+applet-iid=BattstatAppletFactory::BattstatApplet
+object-type=applet
+
+[Object notification-area]
+object-type=applet
+applet-iid=NotificationAreaAppletFactory::NotificationArea
+toplevel-id=top
+position=20
+panel-right-stick=true
+locked=true
+
+[Object clock]
+object-type=applet
+applet-iid=ClockAppletFactory::ClockApplet
+toplevel-id=top
+position=10
+panel-right-stick=true
+locked=true
+
+[Object logout]
+action-type=logout
+object-type=action
+position=0
+panel-right-stick=true
+toplevel-id=top
+locked=true
+
+[Object show-desktop]
+object-type=applet
+applet-iid=WnckletFactory::ShowDesktopApplet
+toplevel-id=bottom
+position=0
+locked=true
+
+[Object window-list]
+object-type=applet
+applet-iid=WnckletFactory::WindowListApplet
+toplevel-id=bottom
+position=20
+locked=true
+
+[Object window-list2]
+object-type=applet
+applet-iid=WnckletFactory::WindowListApplet
+toplevel-id=top
+position=20
+locked=true
+
+[Object workspace-switcher]
+object-type=applet
+applet-iid=WnckletFactory::WorkspaceSwitcherApplet
+toplevel-id=bottom
+position=10
+panel-right-stick=true
+locked=true

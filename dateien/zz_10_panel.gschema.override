@@ -1,0 +1,103 @@
+# linuxmuster als Stanard-Layout für das Panel
+[org.mate.panel]
+default-layout='lmn'
+show-program-list=true
+
+[org.gnome.desktop.interface]
+cursor-theme='DMZ-White'
+document-font-name='Ubuntu 11'
+font-name='Ubuntu 11'
+gtk-theme='Ambiant-MATE'
+icon-theme='Ambiant-MATE'
+monospace-font-name='Ubuntu Mono 13'
+
+[org.gnome.Charmap]
+font='Ubuntu 22'
+
+[org.mate.background]
+picture-filename='/usr/share/backgrounds/ubuntu-mate-common/Ubuntu-Mate-Cold.jpg'
+
+[org.gnome.desktop.wm.preferences]
+button-layout='menu:minimize,maximize,close'
+theme='Ambiant-MATE'
+titlebar-font='Ubuntu Bold 11'
+
+[org.mate.caja.desktop]
+font='Ubuntu 11'
+computer-icon-visible=false
+home-icon-visible=false
+trash-icon-visible=false
+
+[org.mate.font-rendering]
+antialiasing = 'rgba'
+hinting = 'slight'
+
+[org.mate.interface]
+icon-theme='Ambiant-MATE'
+gtk-decoration-layout='menu:minimize,maximize,close'
+gtk-theme='Ambiant-MATE'
+font-name='Ubuntu 11'
+document-font-name='Ubuntu 11'
+monospace-font-name='Ubuntu Mono 13'
+
+[org.mate.Marco.general]
+center-new-windows=false
+compositing-manager=true
+side-by-side-tiling=true
+theme='Ambiant-MATE'
+titlebar-font='Ubuntu Medium 11'
+
+[org.mate.Marco.global-keybindings]
+run-command-terminal='<Control><Alt>t'
+switch-panels='disabled'
+switch-windows='<Alt>Tab'
+switch-windows-all='<Control><Alt>Tab'
+switch-windows-all-backward='<Control><Alt><Shift>Tab'
+switch-windows-backward='<Alt><Shift>Tab'
+
+[org.mate.Marco.window-keybindings]
+move-to-center='<Control><Alt>KP_Begin'
+move-to-corner-ne='<Control><Alt>KP_Page_Up'
+move-to-corner-nw='<Control><Alt>KP_Home'
+move-to-corner-se='<Control><Alt>KP_Page_Down'
+move-to-corner-sw='<Control><Alt>KP_End'
+move-to-side-e='<Control><Alt>KP_Right'
+move-to-side-n='<Control><Alt>KP_Up'
+move-to-side-s='<Control><Alt>KP_Down'
+move-to-side-w='<Control><Alt>KP_Left'
+
+[org.mate.NotificationDaemon]
+theme='slider'
+
+[org.mate.peripherals-mouse]
+cursor-theme='DMZ-White'
+
+[org.mate.peripherals-touchpad]
+disable-while-typing=true
+tap-to-click=true
+
+[org.mate.pluma]
+color-scheme='Ambiant-MATE'
+display-line-numbers=true
+display-right-margin=true
+highlight-current-line=true
+editor-font='Ubuntu Mono 13'
+print-font-body-pango='Ubuntu Mono 9'
+print-font-header-pango='Ubuntu 11'
+print-font-numbers-pango='Ubuntu 8'
+
+[org.mate.screensaver]
+mode='single'
+themes=['screensavers-footlogo-floaters']
+
+[org.mate.sound]
+theme-name='ubuntu'
+event-sounds=true
+input-feedback-sounds=true
+
+# mit dem Comman-Applet soll der Benutzername angezeigt werden
+[org.mate.panel.applet.command]
+command='whoami'
+interval=3600
+width=4
+show-icon=false
