@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Eagle
+Name[de_DE]=Eagle
+Categories=Application;nwt;physik;
+Exec=/opt/eagle/bin/eagle
+Icon=eagleicon50.png
+Terminal=false
+Type=Application
